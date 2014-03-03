@@ -1,10 +1,15 @@
-perri
+Perri
 =====
 
 Experimental SQL DSL in Hy
 
 Examples
 --------
+
+```
+=> (SELECT c1 (FROM t1))
+u'SELECT c1 FROM t1;'
+```
 
 ```
 => (SELECT [c1 c2] (FROM t1))

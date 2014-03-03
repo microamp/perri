@@ -3,7 +3,7 @@
 ;
 
 (defn sep-by-comma [items]
-  (.join ", " items))
+  (if (string? items) items (.join ", " items)))
 
 (defn expand-select [columns clauses]
   (+ "SELECT"
@@ -15,7 +15,7 @@
   (+ " "
      "FROM"
      " "
-     (if (string? tables) tables (sep-by-comma tables))))
+     (sep-by-comma tables)))
 
 (def clause-map {'SELECT expand-select
                  'FROM expand-from})
