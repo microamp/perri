@@ -25,14 +25,14 @@
   (+ "SELECT"
      " "
      (if (string? columns) columns (sep-by-comma columns))
-     (expand-clauses clauses)))
+     (expand-clause clauses)))
 
 (defn expand-from [tables clauses]
   (+ " "
      "FROM"
      " "
      (if (string? tables) tables (sep-by-comma tables))
-     (if (empty? clauses) "" (expand-clauses clauses))))
+     (if (empty? clauses) "" (expand-clause clauses))))
 
 (defn expand-where [exprs clauses]
   (+ " "
@@ -44,7 +44,7 @@
                  'FROM expand-from
                  'WHERE expand-where})
 
-(defn expand-clauses [clauses]
+(defn expand-clause [clauses]
   (print "-----")
   (print "clauses: " clauses)
   (let [[func (get clause-map (-> clauses p-first p-first))]
@@ -56,5 +56,5 @@
     (func args next-clauses)))
 
 (defmacro SELECT [columns &rest clauses]
-  (+ (expand-clauses (cons ['SELECT columns] clauses))
+  (+ (expand-clause (cons ['SELECT columns] clauses))
      ";"))
