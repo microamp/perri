@@ -8,7 +8,7 @@
   (p-nth coll 0))
 
 (defn-alias [perri-second p-second] [coll]
-  (-> coll rest first))
+  (-> coll p-rest p-first))
 
 (defn-alias [perri-rest p-rest] [coll]
   (itertools.islice coll 1 None))
